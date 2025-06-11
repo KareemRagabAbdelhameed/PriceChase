@@ -1,10 +1,4 @@
-import {imageSize} from "./data"
-import image18 from "../../assets/images/image 18.png"
-import image23 from "../../assets/images/image 23.png"
 import { FaStar } from "react-icons/fa"
-import { FaRegStar } from "react-icons/fa6"
-import { MdOutlineFavoriteBorder } from "react-icons/md"
-
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import apiBaseUrl from "../../config/axiosConfig"
@@ -120,13 +114,13 @@ const ProductDetails = () => {
             <a href={productPage} target="_blank">
             <button className="bg-[#F02C2C] hover:bg-[#771d1d] hover:duration-200 w-[229px] h-[51px] text-white rounded-md">Limited time deal</button>
             </a>
-            <p className="text-[#F13F3F] text-xl">-11% <span className="text-lg text-[#A92D2D] dark:text-red-600">{currency}<span className="text-[#A92D2D] text-2xl">{productPrice}</span></span></p>
-            <p>Last Price: <span className="line-through">EGP364.00</span></p>
+            <p className="pb-4"><span className="text-lg text-[#A92D2D] dark:text-red-600">{currency} <span className="text-[#A92D2D] text-2xl">{productPrice}$</span></span></p>
+            {/* <p>Last Price: <span className="line-through">EGP364.00</span></p> */}
           </div>
           <hr className="border-[1px] text-[#EFEFEF] mb-12 sm:mb-24"/>
           <div className="space-y-4 flex flex-col items-center">
             <button onClick={addToWishlist} className="bg-[#EBC010] hover:bg-[#a79345] hover:duration-200 w-full sm:w-[80%] h-[50px] sm:h-[68px] text-white text-lg font-bold rounded-full">Add to Favorites</button>
-            <button className="bg-[#FF9500] hover:bg-[#cf8b2c] hover:duration-200 w-full sm:w-[80%] h-[50px] sm:h-[68px] text-white text-lg font-bold rounded-full">Add to Cart</button>
+            {/* <button className="bg-[#FF9500] hover:bg-[#cf8b2c] hover:duration-200 w-full sm:w-[80%] h-[50px] sm:h-[68px] text-white text-lg font-bold rounded-full">Add to Cart</button> */}
           </div>
         </div>
       </div>

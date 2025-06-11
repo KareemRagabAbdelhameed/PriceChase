@@ -1,7 +1,14 @@
 import React from 'react';
-import { FaShoppingCart, FaChartLine, FaUsers, FaMobileAlt } from 'react-icons/fa';
+import { FaShoppingCart, FaChartLine, FaUsers, FaMobileAlt, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-
+import { Link } from 'react-router-dom';
+import kareemImage from "../assets/images/kareem.jpg"
+import mohamedImage from "../assets/images/mohamed.jpg"
+import alaaImage from "../assets/images/alaa.jpeg"
+import abdlrahmanImage from "../assets/images/abdlrahman.jfif"
+import ahmedImage from "../assets/images/ahmed.jpeg"
+import abdallahImage from "../assets/images/abdallah.jpeg"
+import Footer from './HomePage/Footer/Footer';
 const AboutUs: React.FC = () => {
   const features = [
     {
@@ -26,7 +33,72 @@ const AboutUs: React.FC = () => {
     }
   ];
 
+  const teamMembers = [
+    {
+      name: "Kareem Ragab",
+      position: "Frontend Developer",
+      image: kareemImage,
+      social: {
+        linkedin: "https://www.linkedin.com/in/kareem-ragab-17ba222bb",
+        github: "https://github.com/KareemRagabAbdelhameed",
+        twitter: "https://twitter.com"
+      }
+    },
+    {
+      name: "Mohamed Khaled",
+      position: "Backend Developer",
+      image: mohamedImage,
+      social: {
+        linkedin: "https://www.linkedin.com/in/mohamed-khaled-75842118a/",
+        github: "https://github.com/moh18khaled",
+        twitter: "https://twitter.com"
+      }
+    },
+    {
+      name: "Ahmed Mustafa",
+      position: "Web Scrapping Engineer",
+      image: ahmedImage,
+      social: {
+        linkedin: "https://linkedin.com",
+        github: "https://github.com",
+        twitter: "https://twitter.com"
+      }
+    },
+    {
+      name: "Abdelrahman Mohamed",
+      position: "ِBackend Developer",
+      image: abdlrahmanImage,
+      social: {
+        linkedin: "https://www.linkedin.com/in/abdulrahman-muhammad-361a982ab/",
+        github: "https://github.com/Abdlrhman00",
+        twitter: "https://twitter.com"
+      }
+    },
+    {
+      name: "Alaa Saied",
+      position: "AI&ML Engineer",
+      image: alaaImage,
+      social: {
+        linkedin: "https://linkedin.com/in/alaa-saeed-a33633267",
+        github: "https://github.com/Alaa0Saeed",
+        twitter: "https://twitter.com"
+      }
+    },
+    
+    {
+      name: "Abdallah Ahmed",
+      position: "UI/UX Designer",
+      image: abdallahImage,
+      social: {
+        linkedin: "https://www.linkedin.com/in/abdallah-ahmed-013b6b228",
+        github: "https://github.com/Abdallah9oo",
+        twitter: "https://twitter.com"
+      }
+    }
+  ];
+
   return (
+    <div>
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
       <motion.div 
@@ -36,7 +108,7 @@ const AboutUs: React.FC = () => {
         className="max-w-7xl mx-auto text-center mb-20"
       >
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-          Welcome to <span className="text-customBlue">PriceChase</span>
+          Welcome to <Link to={"/"}><span className="text-customBlue">PriceChase</span></Link>
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
           Your ultimate destination for smart shopping. We help you find the best deals
@@ -83,30 +155,76 @@ const AboutUs: React.FC = () => {
           tracking technology with a user-friendly interface to help you save time and money.
         </p>
       </motion.div>
-
-      {/* Stats Section */}
-      <div className="max-w-7xl mx-auto mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[
-          { number: "1M+", label: "Active Users" },
-          { number: "50K+", label: "Products Tracked" },
-          { number: "100+", label: "Partner Stores" }
-        ].map((stat, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
-          >
-            <div className="text-4xl font-bold text-customBlue dark:text-blue-400 mb-2">
-              {stat.number}
-            </div>
-            <div className="text-gray-600 dark:text-gray-300">
-              {stat.label}
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      
+      {/* Team Members Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="max-w-7xl mx-auto mt-20"
+      >
+        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
+          Meet Our Team
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="relative group overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg"
+            >
+              <div className="aspect-w-1 aspect-h-1">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+                {/* Social Links Overlay */}
+                <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex flex-col justify-end items-center p-6">
+                  <div className="flex space-x-4 mb-4">
+                    <a
+                      href={member.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-customBlue transition-colors duration-200"
+                    >
+                      <FaLinkedin className="h-6 w-6" />
+                    </a>
+                    <a
+                      href={member.social.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-customBlue transition-colors duration-200"
+                    >
+                      <FaGithub className="h-6 w-6" />
+                    </a>
+                    <a
+                      href={member.social.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-customBlue transition-colors duration-200"
+                    >
+                      <FaTwitter className="h-6 w-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {member.name}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {member.position}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+    <Footer />
     </div>
   );
 };

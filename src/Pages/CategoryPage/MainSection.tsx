@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom";
-import image from "../../assets/images/image 12.png"
+import menImage from "../../assets/images/image 12.png"
+import womenImage from "../../assets/images/womenImage.png"
+import boyImage from "../../assets/images/boyImage.png"
+import girlImage from "../../assets/images/girlImage.png"
 import apiBaseUrl from "../../config/axiosConfig";
 import { useEffect, useState } from "react";
 const MainSection = () => {
   const {id} = useParams();
-  const [categoryName,setCategoryName] = useState([]);
+  const [categoryName,setCategoryName] = useState<string>("");
   // Fetch subcategories if not already fetched
   useEffect(()=>{
     const fetchCategoryName = async()=>{
@@ -17,6 +20,47 @@ const MainSection = () => {
     }
     fetchCategoryName();
   },[id])
+
+  // Function to render different content based on categoryName
+  const renderImageBasedOnCategory = () => {
+    if (typeof categoryName === 'string') {
+      switch (categoryName.toLowerCase()) {
+        case "men":
+          return (
+            <img 
+              src={menImage} 
+              alt="Men's collection" 
+              className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] sm:scale-125 object-contain mx-auto' 
+            />
+          );
+        case "women":
+          return (
+            <img 
+              src={womenImage} 
+              alt="Women's collection" 
+              className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] sm:scale-125 object-contain mx-auto' 
+            />
+          );
+          case "girl":
+          return (
+            <img 
+              src={girlImage}
+              alt="Women's collection" 
+              className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] sm:scale-125 object-contain mx-auto' 
+            />
+          );
+          case "boy":
+          return (
+            <img 
+              src={boyImage} 
+              alt="Women's collection" 
+              className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] sm:scale-125 object-contain mx-auto' 
+            />
+          );
+      }
+    }
+    return null;
+  };
     
 
   return (
@@ -35,9 +79,7 @@ const MainSection = () => {
             {/* image section */}
             <div className='order-1 sm:order-2'>
               <div className='relative'>
-                <img src={image} alt="" className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px]
-                sm:scale-125 object-contain mx-auto
-                '/>
+                {renderImageBasedOnCategory()}
               </div>
             </div>
             </div> 

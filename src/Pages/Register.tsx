@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
 import mymage from "../assets/images/whiteLogin.png"
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons"
 import {faLock,faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons"

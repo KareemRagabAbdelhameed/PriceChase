@@ -1,5 +1,5 @@
-import { FaStar, FaChevronLeft, FaChevronRight, FaEye } from "react-icons/fa";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { FaStar , FaEye } from "react-icons/fa";
+import {  useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import apiBaseUrl from "../../config/axiosConfig";
 import { motion } from "framer-motion";

@@ -43,8 +43,13 @@ const SearchByImageResults: React.FC<SearchByImageResultsProps> = ({ imageQuery 
 
         const formData = new FormData();
         formData.append('image', imageQuery);
-
-        const response = await apiBaseUrl.get<ApiResponse>(`/products/search-by-image?query=${formData}`);
+console.log(formData);
+const response = await apiBaseUrl.post<ApiResponse>('/products/search-by-image', formData, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
+console.log(response);
         
         
         if (response.data.error) {

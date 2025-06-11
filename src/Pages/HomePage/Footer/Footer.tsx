@@ -2,6 +2,13 @@ import { Link } from "react-router-dom"
 import { footerLinks, mainFooterLinks } from "./data"
 
 const Footer = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="bg-gradient-to-b from-gray-800 to-gray-900 text-white py-8">
       <div className="container mx-auto px-4">
@@ -41,12 +48,21 @@ const Footer = () => {
               <ul className="space-y-2">
                 {mainFooterLinks.map(({title, link}, i) => (
                   <li key={i}>
-                    <a
-                      href={link}
-                      className="text-gray-300 hover:text-customBlue text-sm transition duration-200"
-                    >
-                      {title}
-                    </a>
+                    {title === 'Popular Products' || title === 'Discount Section' ? (
+                      <button
+                        onClick={() => scrollToSection(title === 'Popular Products' ? 'popular-products' : 'discount-products')}
+                        className="text-gray-300 hover:text-customBlue text-sm transition duration-200"
+                      >
+                        {title}
+                      </button>
+                    ) : (
+                      <Link
+                        to={link}
+                        className="text-gray-300 hover:text-customBlue text-sm transition duration-200"
+                      >
+                        {title}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -63,4 +79,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;

@@ -10,23 +10,17 @@ export const footerLinks : IProps[] = [
     },
     {
         title : "About",
-        link : "/#about"
+        link : "/about"
     },
     {
         title : "Contacts",
-        link : "/#contacts"
+        link : "/contacts"
     },
-    {
-        title : "Blogs",
-        link : "/#blogs"
-    },
+    
 ]
 
 export const mainFooterLinks : IProps[] = [
-    {
-        title : "Categories",
-        link : "/categories"
-    },
+    
     {
         title : "Popular Products",
         link : "/#"

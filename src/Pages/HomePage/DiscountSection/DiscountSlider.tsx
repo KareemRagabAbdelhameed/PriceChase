@@ -3,7 +3,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { FaStar, FaSpinner, FaEye } from 'react-icons/fa';
-import { MdLocalOffer } from 'react-icons/md';
 import { Pagination, Navigation } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import { fetchDiscountProducts } from '../PopularProducts/data';
@@ -70,12 +69,12 @@ const DiscountSlider = () => {
                        overflow-hidden group relative"
             >
               {/* Discount Badge */}
-              <div className="absolute top-4 left-4 z-10">
+              {/* <div className="absolute top-4 left-4 z-10">
                 <div className="bg-red-500 text-white px-3 py-1 rounded-full flex items-center gap-1 text-sm font-semibold">
                   <MdLocalOffer className="text-lg" />
                   <span>30% OFF</span>
                 </div>
-              </div>
+              </div> */}
 
               {/* Views Counter */}
               <div className="absolute top-4 right-4 z-10 bg-black/40 text-white px-2 py-1 rounded-full flex items-center gap-1 text-xs">

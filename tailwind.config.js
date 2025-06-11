@@ -10,6 +10,10 @@ export default {
       animation: {
         'fade-in': 'fadeIn 1s ease-out forwards',
       },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+        'montserrat': ['Montserrat', 'sans-serif'],
+      },
       keyframes: {
         fadeIn: {
           '0%': { opacity: 0, transform: 'scale(0.9)' },

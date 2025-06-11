@@ -17,9 +17,8 @@ import ScrollToTop from "./Pages/ScrollToTop";
 import UpdateProfilePage from "./Pages/ProfilePage/UpdateProfilePage";
 import VerifyAccount from "./validation/VerifyAccount";
 import AboutUs from "./Pages/AboutUs";
-import ForgotPasswordPage from "./Pages/ProfilePage/ForgotPasswordPage";
-import ResetPasswordPage from "./Pages/ProfilePage/ResetPasswordPage";
-
+import NotFound from './Pages/NotFound';
+import Contacts from "./Pages/Contacts";
 const App: React.FC = () => {
   const [showSplash, setShowSplash] = useState(true);
 
@@ -37,17 +36,17 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/categories/:id" element={<CategoryPage />} />
         <Route path="/productPage/:id" element={<ProductPage />} />
-        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/contacts" element={<Contacts />} />
         <Route path="/profile-page" element={<ProfilePage />} />
         <Route path="/update-profile-page" element={<UpdateProfilePage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/admin" element={<AdminDashboard />}>
           <Route path="users" element={<ManageUsers />} />
           <Route path="products" element={<ManageProducts />} />
           <Route path="fetch-products" element={<FetchNewProducts />} />
           <Route path="product-status" element={<UpdateProductStatus />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </UserProvider>
   );

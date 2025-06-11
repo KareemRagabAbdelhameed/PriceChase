@@ -1,4 +1,4 @@
-import { FaTrash, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import apiBaseUrl from '../config/axiosConfig';
 import Swal from 'sweetalert2';

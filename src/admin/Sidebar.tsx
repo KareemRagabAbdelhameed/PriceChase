@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FaUsers, 
@@ -6,27 +6,48 @@ import {
   FaClipboardCheck,
   FaPlus,
   FaBars,
-  FaSignOutAlt
+  FaSignOutAlt,
+  FaSun,
+  FaMoon
 } from 'react-icons/fa';
 
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(true);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setIsDark(true);
+      document.documentElement.classList.add('dark');
+    } else {
+      setIsDark(false);
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+      setIsDark(true);
+    }
+  };
 
   const menuItems = [
     { name: 'Manage Users', icon: FaUsers, path: '/admin/users' },
     { name: 'Manage Products', icon: FaBoxes, path: '/admin/products' },
     { name: 'Fetch New Products', icon: FaPlus, path: '/admin/fetch-products' },
     { name: 'Update Product Status', icon: FaClipboardCheck, path: '/admin/product-status' },
-    // { name: 'Schedule Auto Updates', icon: FaSync, path: '/admin/auto-updates' },
-    // { name: 'Schedule Product Fetch', icon: FaClock, path: '/admin/schedule-fetch' },
   ];
-
 
   return (
     <div 
-      className={`h-screen bg-customBlue dark:bg-gray-800 dark:text-white transition-all duration-300 ${
-        isExpanded ? 'w-64' : 'w-20'
-      } fixed left-0 top-0 flex flex-col`}
+      className={`h-screen bg-customBlue dark:bg-gray-800 dark:text-white transition-all duration-300 
+        ${isExpanded ? 'w-64 max-w-[256px]' : 'w-20'} fixed left-0 top-0 flex flex-col`}
     >
       {/* Toggle Button */}
       <button
@@ -36,10 +57,18 @@ const Sidebar = () => {
         <FaBars />
       </button>
 
+      {/* Dark Mode Toggle */}
+      <button
+        onClick={toggleDarkMode}
+        className="absolute -right-3 top-16 bg-customBlue dark:bg-gray-800 dark:text-white p-1 rounded-full"
+      >
+        {isDark ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-300" />}
+      </button>
+
       {/* Logo Section */}
       <Link to={"/"}>
       <div className="p-4 border-b border-gray-700 text-white font-bold">
-        <h2 className={`font-bold cursor-pointer ${isExpanded ? 'text-3xl' : 'text-sm text-center'}`}>
+        <h2 className={`font-bold cursor-pointer ${isExpanded ? 'text-2xl' : 'text-sm text-center'}`}>
           {isExpanded ? 'PriceChase' : 'PC'}
         </h2>
       </div>
@@ -56,7 +85,7 @@ const Sidebar = () => {
           >
             <item.icon className={`text-xl ${!isExpanded && 'text-2xl'}`} />
             {isExpanded && (
-              <span className="ml-3 whitespace-nowrap">{item.name}</span>
+              <span className="ml-3 whitespace-nowrap text-sm">{item.name}</span>
             )}
           </Link>
         ))}
@@ -70,7 +99,7 @@ const Sidebar = () => {
       >
         <FaSignOutAlt className={`text-xl ${!isExpanded && 'text-2xl'}`} />
         {isExpanded && (
-          <span className="ml-3 whitespace-nowrap">Exit</span>
+          <span className="ml-3 whitespace-nowrap text-sm">Exit</span>
         )}
       </button>
       </Link>

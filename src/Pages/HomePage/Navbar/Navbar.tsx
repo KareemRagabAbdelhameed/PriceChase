@@ -19,7 +19,7 @@ type SearchBarProps = {
   onImageUpload: (file: File | null) => void;
 };
 
-const Navbar: React.FC<SearchBarProps> = ({ onDebouncedSearch, showCategories, setShowCategories, onImageUpload }) => {
+const Navbar: React.FC<SearchBarProps> = ({ onDebouncedSearch, onImageUpload }) => {
   const user = useContext(UserContext);
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);

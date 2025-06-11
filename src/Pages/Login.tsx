@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faCartShopping} from "@fortawesome/free-solid-svg-icons"
 import mymage from "../assets/images/whiteLogin.png"
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons"
 import {faLock,faEye,faEyeSlash } from "@fortawesome/free-solid-svg-icons"
@@ -112,9 +111,9 @@ if(axios.isAxiosError(error)){
             <FontAwesomeIcon icon={isVisible?faEyeSlash :faEye} onClick={togglePasswordVisibility} className="absolute right-4 top-9 w-5 h-5 dark:text-gray-900" />
             <input type={isVisible? "text" : "password"} id="first-name" {...register("password")} className="h-12 pl-12 border-[1px] border-gray-600 rounded-md  focus:outline-none focus:border-[2px] focus:border-customBlue" />
             <p className="block text-red-700 font-semibold text-sm">{errors.password?.message}</p>
-            <Link to={"/forgot-password"}>
+            {/* <Link to={"/forgot-password"}>
             <span className="cursor-pointer text-customBlue">Forget Password?</span>
-            </Link>
+            </Link> */}
             </div>
             
             
