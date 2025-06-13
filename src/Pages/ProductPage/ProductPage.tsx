@@ -3,9 +3,9 @@ import Footer from "../HomePage/Footer/Footer"
 import ProductDetails from "./ProductDetails"
 import ProductDiscription from "./ProductDiscription"
 import UserReviews from "./UserReviews"
-import SearchResults from "../HomePage/Search/SearchResults"
 import Navbar from "../HomePage/Navbar/Navbar"
-import SearchByImageResults from "../HomePage/Search/SearchByImageResults"
+import SearchResultsWithFilters from "../HomePage/Search/SearchResultsWithFilters"
+import SearchByImageResultsWithFilters from "../HomePage/Search/SearchByImageResultsWithFilters"
 
 const ProductPage = () => {
   const [query, setQuery] = useState('');
@@ -19,8 +19,8 @@ const ProductPage = () => {
         setShowCategories={setShowCategories}
         onImageUpload={setImageQuery}
       />
-      {query.trim() !== '' && <SearchResults query={query} />}
-      {imageQuery && <SearchByImageResults imageQuery={imageQuery} />}
+      {query.trim() !== '' && <SearchResultsWithFilters query={query} />}
+      {imageQuery && <SearchByImageResultsWithFilters imageQuery={imageQuery} />}
       <ProductDetails />
       <ProductDiscription />
       <UserReviews />

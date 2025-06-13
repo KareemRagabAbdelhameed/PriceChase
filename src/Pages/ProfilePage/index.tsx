@@ -3,8 +3,8 @@ import Footer from "../HomePage/Footer/Footer"
 import Navbar from "../HomePage/Navbar/Navbar"
 import ProfileDetails from "./ProfileDetails"
 import YourWishlist from "./YourWishlist"
-import SearchResults from "../HomePage/Search/SearchResults"
-import SearchByImageResults from "../HomePage/Search/SearchByImageResults"
+import SearchResultsWithFilters from "../HomePage/Search/SearchResultsWithFilters"
+import SearchByImageResultsWithFilters from "../HomePage/Search/SearchByImageResultsWithFilters"
 
 const ProfilePage = () => {
   const [showCategories, setShowCategories] = useState(false);
@@ -18,8 +18,8 @@ const ProfilePage = () => {
         setShowCategories={setShowCategories}
         onImageUpload={setImageQuery}
       />
-      {query.trim() !== '' && <SearchResults query={query} />}
-      {imageQuery && <SearchByImageResults imageQuery={imageQuery} />}      <ProfileDetails />
+      {query.trim() !== '' && <SearchResultsWithFilters query={query} />}
+      {imageQuery && <SearchByImageResultsWithFilters imageQuery={imageQuery} />}      <ProfileDetails />
       <YourWishlist />
       <Footer />
     </div>

@@ -2,9 +2,9 @@ import { useState } from "react"
 import Footer from "../HomePage/Footer/Footer"
 import MainSection from "./MainSection"
 import MenShirts from "./MenShirts"
-import SearchResults from "../HomePage/Search/SearchResults"
-import SearchByImageResults from "../HomePage/Search/SearchByImageResults"
 import Navbar from "../HomePage/Navbar/Navbar"
+import SearchResultsWithFilters from "../HomePage/Search/SearchResultsWithFilters"
+import SearchByImageResultsWithFilters from "../HomePage/Search/SearchByImageResultsWithFilters"
 
 const CategoryPage = () => {
   const [showCategories, setShowCategories] = useState(false);
@@ -18,8 +18,8 @@ const CategoryPage = () => {
         setShowCategories={setShowCategories}
         onImageUpload={setImageQuery}
       />
-      {query.trim() !== '' && <SearchResults query={query} />}
-      {imageQuery && <SearchByImageResults imageQuery={imageQuery} />}
+      {query.trim() !== '' && <SearchResultsWithFilters query={query} />}
+      {imageQuery && <SearchByImageResultsWithFilters imageQuery={imageQuery} />}
 
 
       <MainSection />

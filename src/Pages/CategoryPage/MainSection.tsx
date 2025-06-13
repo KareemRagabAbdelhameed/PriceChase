@@ -45,7 +45,7 @@ const MainSection = () => {
           return (
             <img 
               src={girlImage}
-              alt="Women's collection" 
+              alt="Girl's collection" 
               className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] sm:scale-125 object-contain mx-auto' 
             />
           );
@@ -53,7 +53,7 @@ const MainSection = () => {
           return (
             <img 
               src={boyImage} 
-              alt="Women's collection" 
+              alt="Boy's collection" 
               className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] sm:scale-125 object-contain mx-auto' 
             />
           );

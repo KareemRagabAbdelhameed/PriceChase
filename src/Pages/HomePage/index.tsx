@@ -3,9 +3,9 @@ import Navbar from "./Navbar/Navbar"
 import DicountSection from "./DiscountSection/DicountSection"
 import PopularProducts from "./PopularProducts/PopularProducts"
 import Footer from "./Footer/Footer"
-import SearchResults from "./Search/SearchResults"
-import SearchByImageResults from "./Search/SearchByImageResults"
 import { useState } from "react"
+import SearchResultsWithFilters from "./Search/SearchResultsWithFilters"
+import SearchByImageResultsWithFilters from "./Search/SearchByImageResultsWithFilters"
 
 const HomePage = () => {
   const [showCategories, setShowCategories] = useState(false);
@@ -20,8 +20,8 @@ const HomePage = () => {
         setShowCategories={setShowCategories}
         onImageUpload={setImageQuery}
       />
-      {query.trim() !== '' && <SearchResults query={query} />}
-      {imageQuery && <SearchByImageResults imageQuery={imageQuery} />}
+      {query.trim() !== '' && <SearchResultsWithFilters query={query} />}
+      {imageQuery && <SearchByImageResultsWithFilters imageQuery={imageQuery} />}
       
         
           <Hero />
