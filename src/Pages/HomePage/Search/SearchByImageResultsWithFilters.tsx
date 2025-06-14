@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { FunnelIcon, ArrowsUpDownIcon } from "@heroicons/react/24/outline";
 
 type Product = {
-  _id: string;
+  id: string;
   Image: string;
   Title: string;
   Price: number;
@@ -122,7 +122,7 @@ const SearchByImageResultsWithFilters: React.FC<SearchByImageResultsProps> = ({ 
         }
       } catch (error) {
         console.error(error);
-        setError("An error occurred while searching. Please try again.");
+        setError("No products found matching your image.");
         setResults([]);
       } finally {
         setLoading(false);
@@ -352,10 +352,10 @@ const SearchByImageResultsWithFilters: React.FC<SearchByImageResultsProps> = ({ 
 
       {/* Results Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {results.map(({ _id, Image, Title, Price, AverageRating, Currency, Views }) => (
+        {results.map(({ id, Image, Title, Price, AverageRating, Currency, Views }) => (
           <div
-            key={_id}
-            onClick={() => handleProductClick(_id)}
+            key={id}
+            onClick={() => handleProductClick(id)}
             className="cursor-pointer bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl 
                      transform hover:-translate-y-1 transition-all duration-300 h-full overflow-hidden group"
           >
