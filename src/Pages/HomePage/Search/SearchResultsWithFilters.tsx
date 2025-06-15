@@ -97,27 +97,31 @@ const SearchResultsWithFilters: React.FC<SearchResultsProps> = ({ query }) => {
       try {
         setLoading(true);
         setError(null);
-        let url = `/products/search?query=${query}`;
         
-        const filterQuery = buildFilterQuery();
-        if (filterQuery) url += `&${filterQuery}`;
+        // First, get search results
+        const searchResponse = await apiBaseUrl.get<ApiResponse>(`/products/search?query=${query}`);
         
-        if (sort) url += `&${sort}`;
-        
-        const response = await apiBaseUrl.get<ApiResponse>(url);
-        
-        if (response.data.error) {
-          setError(response.data.error);
+        if (searchResponse.data.error || !searchResponse.data.products || searchResponse.data.products.length === 0) {
+          setError(searchResponse.data.error || "No products found matching your search.");
           setResults([]);
-        } else if (response.data.products && response.data.products.length === 0) {
-          setError("No products found matching your search.");
-          setResults([]);
+          return;
+        }
+
+        // Then, apply filters if any are set
+        const productIds = searchResponse.data.products.map(p => p.id).join(',');
+        if (filterOptions.rating || filterOptions.minPrice || filterOptions.maxPrice || sort) {
+          const filterUrl = `/products/searchFilters?product_ids=${productIds}`;
+          const filterQuery = buildFilterQuery();
+          const sortQuery = sort ? `&${sort}` : '';
+          
+          const filterResponse = await apiBaseUrl.get(`${filterUrl}${filterQuery ? `&${filterQuery}` : ''}${sortQuery}`);
+          setResults(filterResponse.data.products || []);
         } else {
-          setResults(response.data.products || []);
+          setResults(searchResponse.data.products);
         }
       } catch (error) {
         console.log(error);
-        setError("No products found matching your search.");
+        setError("An error occurred while fetching results.");
         setResults([]);
       } finally {
         setLoading(false);
@@ -129,7 +133,7 @@ const SearchResultsWithFilters: React.FC<SearchResultsProps> = ({ query }) => {
     }, 500);
 
     return () => clearTimeout(debounceTimer);
-  }, [query, sort, filterOptions]);
+  }, [query, filterOptions, sort]);
 
   const handleProductClick = (id: string) => {
     navigate(`/productPage/${id}`);

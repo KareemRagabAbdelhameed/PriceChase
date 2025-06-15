@@ -100,25 +100,30 @@ const SearchByImageResultsWithFilters: React.FC<SearchByImageResultsProps> = ({ 
         const formData = new FormData();
         formData.append('image', imageQuery);
 
-        let url = '/products/search-by-image';
-        const filterQuery = buildFilterQuery();
-        if (filterQuery) url += `?${filterQuery}`;
-        if (sort) url += `${filterQuery ? '&' : '?'}${sort}`;
-
-        const response = await apiBaseUrl.post<ApiResponse>(url, formData, {
+        // First, get initial search results
+        const searchResponse = await apiBaseUrl.post<ApiResponse>(`/products/search-by-image`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
         
-        if (response.data.error) {
-          setError(response.data.error);
+        if (searchResponse.data.error || !searchResponse.data.products || searchResponse.data.products.length === 0) {
+          setError(searchResponse.data.error || "No products found matching your image.");
           setResults([]);
-        } else if (response.data.products && response.data.products.length === 0) {
-          setError("No products found matching your image.");
-          setResults([]);
+          return;
+        }
+
+        // Then, apply filters if any are set
+        const productIds = searchResponse.data.products.map(p => p.id).join(',');
+        if (filterOptions.rating || filterOptions.minPrice || filterOptions.maxPrice || sort) {
+          const filterUrl = `/products/searchFilters?product_ids=${productIds}`;
+          const filterQuery = buildFilterQuery();
+          const sortQuery = sort ? `&${sort}` : '';
+          
+          const filterResponse = await apiBaseUrl.get(`${filterUrl}${filterQuery ? `&${filterQuery}` : ''}${sortQuery}`);
+          setResults(filterResponse.data.products || []);
         } else {
-          setResults(response.data.products || []);
+          setResults(searchResponse.data.products);
         }
       } catch (error) {
         console.error(error);
@@ -130,7 +135,7 @@ const SearchByImageResultsWithFilters: React.FC<SearchByImageResultsProps> = ({ 
     };
     
     fetchSearchResults();
-  }, [imageQuery, sort, filterOptions]);
+  }, [imageQuery, filterOptions, sort]);
 
   const handleProductClick = (id: string) => {
     navigate(`/productPage/${id}`);

@@ -72,9 +72,9 @@ const MainSection = () => {
              <h1 className="text-xl sm:text-3xl font-bold">Best {categoryName}</h1>   
             <h2 className='text-3xl sm:text-5xl font-bold '>Collection</h2>
             <p className='text-sm'>Great Material and sleek look for all genders.</p>
-            <div>
+            {/* <div>
               <button className='bg-customBlue hover:scale-105 duration-200 text-white py-2 px-8 rounded-md'>Shop Now</button>
-            </div>
+            </div> */}
             </div>
             {/* image section */}
             <div className='order-1 sm:order-2'>
