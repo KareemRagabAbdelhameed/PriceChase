@@ -122,11 +122,11 @@ const UpdateProfilePage: React.FC = () => {
       const updateData = new FormData();
 
       if (formData.firstname.trim() && formData.firstname !== initialData.firstname) {
-        updateData.append("firstname", formData.firstname);
+        updateData.append("firstName", formData.firstname);
       }
 
       if (formData.lastname.trim() && formData.lastname !== initialData.lastname) {
-        updateData.append("lastname", formData.lastname);
+        updateData.append("lastName", formData.lastname);
       }
 
       if (formData.profilePicture instanceof File) {
